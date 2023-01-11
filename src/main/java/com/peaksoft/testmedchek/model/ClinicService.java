@@ -23,7 +23,7 @@ public class ClinicService {
     private String service_name,description,text;
     private Double price;
 
-    @OneToMany(cascade = ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = ALL, fetch = FetchType.EAGER,mappedBy = "clinicService")
     private List<Personal> personalList;
 
     public void addPersonalToService(Personal personal)

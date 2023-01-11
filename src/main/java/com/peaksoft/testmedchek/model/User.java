@@ -21,7 +21,7 @@ public class User {
     private Long id;
     private String first_name, last_name,email,password,phone_number;
 
-    @OneToMany(cascade = ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = ALL, fetch = FetchType.EAGER,mappedBy = "user")
     private List<Result> resultList;
 
     public void addResultToUser(Result result)
@@ -31,11 +31,11 @@ public class User {
         resultList.add(result);
         result.setUser(this);
     }
+//
+//    @OneToMany(cascade = ALL, fetch = FetchType.EAGER,mappedBy = "user")
+//    private List<Application> applicationList;
 
     @OneToMany(cascade = ALL, fetch = FetchType.EAGER,mappedBy = "user")
-    private List<Application> applicationList;
-
-    @OneToMany(cascade = ALL, fetch = FetchType.EAGER)
     private List<Review> reviewList;
 
     public void addReviewToUser(Review review)

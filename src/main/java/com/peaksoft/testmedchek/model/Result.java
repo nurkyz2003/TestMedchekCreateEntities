@@ -17,7 +17,7 @@ public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String order_number, order_image;
+    private String order_number;
 
     @ManyToOne(cascade = {MERGE,REFRESH,DETACH,PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -26,7 +26,6 @@ public class Result {
 
     public Result(String order_number, String order_image, User user) {
         this.order_number = order_number;
-        this.order_image = order_image;
         this.user = user;
     }
 }
