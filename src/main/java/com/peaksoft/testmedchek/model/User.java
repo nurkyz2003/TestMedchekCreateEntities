@@ -54,5 +54,7 @@ public class User {
     )
     private List<ClinicService> clinicServiceList;
 
+   @OneToOne(cascade = ALL,fetch = FetchType.EAGER)
+    private Role role;
 
 }
