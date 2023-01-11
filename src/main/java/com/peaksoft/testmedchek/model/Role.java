@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Entity
 @Getter
 @Setter
@@ -16,6 +18,6 @@ public class Role {
     private Long id;
     private String role_name;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = {MERGE,REFRESH,DETACH},fetch = FetchType.EAGER)
     private User user;
 }
