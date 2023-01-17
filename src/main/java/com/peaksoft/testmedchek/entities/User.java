@@ -1,22 +1,25 @@
 package com.peaksoft.testmedchek.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
@@ -32,6 +35,7 @@ public class User {
     private String userPhoneNumber;
 
     private String userPassword;
+    private  int code;
 
     @ManyToOne(cascade = {DETACH, MERGE, REFRESH,PERSIST})
     @JoinColumn(name = "role_id")
@@ -48,4 +52,42 @@ public class User {
 
     @OneToMany(cascade = ALL, mappedBy = "user")
     private List<OnlineEntry> onlineEntries;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        return grantedAuthorities;  }
+
+
+    @Override
+    public String getPassword() {
+        return userPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return getUserFirstName();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 }
