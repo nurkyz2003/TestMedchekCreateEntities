@@ -33,7 +33,8 @@ public class User {
 
     private String userPassword;
 
-    @OneToOne(cascade = {DETACH, MERGE, REFRESH})
+    @ManyToOne(cascade = {DETACH, MERGE, REFRESH,PERSIST})
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @ManyToMany(cascade = {DETACH, MERGE, REFRESH})
@@ -47,5 +48,4 @@ public class User {
 
     @OneToMany(cascade = ALL, mappedBy = "user")
     private List<OnlineEntry> onlineEntries;
-
 }

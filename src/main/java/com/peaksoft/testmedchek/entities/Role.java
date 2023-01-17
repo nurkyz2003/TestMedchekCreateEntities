@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
+import static jakarta.persistence.CascadeType.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,4 +24,7 @@ public class Role {
     private Long id;
 
     private String roleName;
+
+    @OneToMany(cascade = {MERGE,REFRESH,DETACH},mappedBy = "role")
+    private List<User> users;
 }
