@@ -1,4 +1,4 @@
-package com.peaksoft.testmedchek.repository;
+package com.peaksoft.testmedchek.security.user;
 
 
 import com.peaksoft.testmedchek.entities.Role;

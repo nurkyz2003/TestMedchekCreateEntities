@@ -1,6 +1,6 @@
 package com.peaksoft.testmedchek.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static jakarta.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.*;
 
+@Data
 @Getter
 @Setter
 @Builder
@@ -35,6 +36,7 @@ public class User implements UserDetails {
     private String userPhoneNumber;
 
     private String userPassword;
+
     private  int code;
 
     @ManyToOne(cascade = {DETACH, MERGE, REFRESH,PERSIST})

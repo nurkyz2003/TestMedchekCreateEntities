@@ -1,6 +1,7 @@
 package com.peaksoft.testmedchek.security.config;
 
-import com.peaksoft.testmedchek.repository.UserRepository;
+
+import com.peaksoft.testmedchek.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
-public class WebAppSecurity {
+public class ApplicationConfig {
 
   private final UserRepository repository;
 
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> repository.findByEmail(username)
-            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
 
   @Bean
