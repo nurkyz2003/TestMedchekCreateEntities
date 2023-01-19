@@ -17,7 +17,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-  private final UserRepository userRepository;
 
   private final AuthenticationService service;
 
