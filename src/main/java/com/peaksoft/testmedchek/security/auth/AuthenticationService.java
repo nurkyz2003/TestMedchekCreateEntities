@@ -57,15 +57,32 @@ public class AuthenticationService {
             .email(user.getUserEmail())
             .build();
   }
+  /*@PostConstruct
+    public void init() {
+        Role role = new Role();
+        role.setRoleName("admin");
+        Role role2 = new Role();
+        role.setRoleName("user");
+        User user = User.builder()
+                .userFirstName("Nursultan")
+                .userLastName("081262n")
+                .userEmail("admin@gmail.com")
+                .userPassword(passwordEncoder.encode("nursultan"))
+                .role(role)
+                .build();
+        role.setUsers(Arrays.asList(user));
+        repository.save(user);
+        roleRepository.save(role);
+        roleRepository.save(role2);*/
   @PostConstruct
   public void initMethod() {
     repository.findByEmail(admin().getUserEmail())
             .ifPresent(repository::delete);
     repository.save(admin());
 
-    repository.findByEmail(instructor().getUserEmail())
+    repository.findByEmail(user().getUserEmail())
             .ifPresent(repository::delete);
-    repository.save(instructor());
+    repository.save(user());
   }
 
   public User admin() {
@@ -80,7 +97,7 @@ public class AuthenticationService {
     return user;
   }
 
-  public User instructor() {
+  public User user() {
     Role role = new Role();
     role.setRoleName("User");
     User user = new User();
@@ -91,5 +108,4 @@ public class AuthenticationService {
     user.setRole(role);
     return user;
   }
-
 }
