@@ -1,7 +1,7 @@
 package com.peaksoft.testmedchek.validation.password;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class PasswordValidation implements ConstraintValidator<PasswordValid, String> {
 

@@ -1,11 +1,11 @@
 package com.peaksoft.testmedchek.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
-import static javax.persistence.CascadeType.*;
+import static jakarta.persistence.CascadeType.*;
 
 @Getter
 @Setter
